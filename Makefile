@@ -1,13 +1,17 @@
 NAME = codexion
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -I.
 
-SRC = main.c
+SRC = main.c\
+	utils/ft_atol.c\
+	parsing/parse_args.c\
+	parsing/parse_args_utils.c
+
 OBJ = $(SRC:.c=.o)
 HEADERS = codexion.h
 
-all = $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

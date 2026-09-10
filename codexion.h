@@ -26,7 +26,7 @@ typedef struct s_args
 	long	time_to_compile;
 	long	time_to_debug;
 	long	time_to_refactor;
-	long	number_of_compiles_required;
+	int		number_of_compiles_required;
 	long	dongle_cooldown;
 	char	*scheduler;
 }	t_args;
@@ -38,7 +38,20 @@ typedef struct s_coder
 
 typedef struct s_dongle
 {
-	int	id;
+	pthread_mutex_t	mutex;
+	long available_at;
 }	t_dongle;
+
+int		is_number(char *str);
+void	parse_args(char **av, t_args *args);
+int 	ft_isspace(char c);
+long	ft_atol(const char *str);
+void	print_usage();
+int 	is_valid_number_of_coders(int number_of_coders);
+int 	is_valid_time_value(long time_value);
+int 	is_valid_number_of_compiles_required(int count);
+int 	is_valid_scheduler(char *scheduler);
+int		is_valid_args(t_args *args);
+void	print_arg_error(int error);
 
 #endif
