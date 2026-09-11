@@ -6,11 +6,31 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 09:57:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/09 10:58:56 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/11 09:49:07 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+int	validate_number_args(char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < 8)
+	{
+		if (!is_number(av[i]))
+		{
+			printf(
+				"Error: Invalid argument, "
+				"'%s' must be an integer\n", av[i]
+				);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	main(int ac, char **av)
 {
@@ -22,16 +42,8 @@ int	main(int ac, char **av)
 		print_usage();
 		return (1);
 	}
-	i = 1;
-	while (i < 8)
-	{
-		if (!is_number(av[i]))
-		{
-			printf("Error: Invalid argument, '%s' must be a positive integer\n", av[i]);
-			return (1);
-		}
-		i++;
-	}
+	if (validate_number_args(av) == 0)
+		return (1);
 	parse_args(av, &args);
 	i = is_valid_args(&args);
 	if (i != 0)
@@ -39,7 +51,7 @@ int	main(int ac, char **av)
 		print_arg_error(i);
 		return (1);
 	}
-	printf("All arguments are valid. Proceeding with the program...\n");
-
+	printf("All arguments are valid.\n");
+	printf("%ld\n", args.time_to_debug);
 	return (0);
 }

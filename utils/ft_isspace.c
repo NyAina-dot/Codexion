@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/11 08:46:31 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/11 09:39:23 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/11 09:22:32 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/11 09:43:27 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-long	ft_atol(const char *str)
+int	ft_isspace(char c)
 {
-	long	result;
-
-	result = 0;
-	while (ft_isspace(*str))
-	{
-		str++;
-	}
-	if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result);
+	return (
+		c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r'
+	);
 }

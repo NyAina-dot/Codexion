@@ -1,4 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/11 08:47:06 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/11 11:01:23 by nyrajaon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
+
+int	is_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[0] == '\0')
+		return (0);
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	parse_args(char **av, t_args *args)
 {
