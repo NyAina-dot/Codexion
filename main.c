@@ -34,8 +34,9 @@ int	validate_number_args(char **av)
 
 int	main(int ac, char **av)
 {
-	t_args	args;
-	int		i;
+	t_args			args;
+	t_simulation	sim;
+	int				i;
 
 	if (ac != 9)
 	{
@@ -51,7 +52,20 @@ int	main(int ac, char **av)
 		print_arg_error(i);
 		return (1);
 	}
-	printf("All arguments are valid.\n");
-	printf("%ld\n", args.time_to_debug);
+	if (init_simulation(&sim, &args) != 0)
+	{
+		printf("Error: Failed to initialize simulation\n");
+		return (1);
+	}
+	if (init_coders(&sim) != 0)
+	{
+		printf("Error: Failed to initialize coders\n");
+		return (1);
+	}
+	if (init_dongles(&sim) != 0)
+	{
+		printf("Error: Failed to initialize dongles\n");
+		return (1);
+	}
 	return (0);
 }

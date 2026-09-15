@@ -42,6 +42,15 @@ typedef struct s_dongle
 	long			available_at;
 }	t_dongle;
 
+typedef struct s_simulation
+{
+	t_args		args;
+	t_coder		*coders;
+	t_dongle	*dongles;
+	long		start_time;
+	int			stop;
+}	t_simulation;
+
 int		is_number(char *str);
 void	parse_args(char **av, t_args *args);
 int		ft_isspace(char c);
@@ -54,5 +63,10 @@ int		is_valid_scheduler(char *scheduler);
 int		is_valid_args(t_args *args);
 void	print_arg_error(int error);
 int		validate_number_args(char **av);
+int		init_simulation(t_simulation *sim, t_args *args);
+int		allocate_coders(t_simulation *sim);
+int 	init_coders(t_simulation *sim);
+int 	allocate_dongles(t_simulation *sim);
+int 	init_dongles(t_simulation *sim);
 
 #endif

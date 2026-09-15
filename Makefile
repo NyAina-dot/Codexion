@@ -7,7 +7,12 @@ SRC = main.c\
 	utils/ft_atol.c\
 	utils/ft_isspace.c\
 	parsing/parse_args.c\
-	parsing/parse_args_utils.c
+	parsing/parse_args_utils.c\
+	simulation/init_simulation.c\
+	simulation/allocate_coders.c\
+	simulation/init_coders.c\
+	simulation/allocate_dongles.c\
+	simulation/init_dongles.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = codexion.h
