@@ -39,33 +39,20 @@ int	main(int ac, char **av)
 	int				i;
 
 	if (ac != 9)
-	{
-		print_usage();
-		return (1);
-	}
-	if (validate_number_args(av) == 0)
+		return (print_usage(), 1);
+	if (!validate_number_args(av))
 		return (1);
 	parse_args(av, &args);
 	i = is_valid_args(&args);
 	if (i != 0)
-	{
-		print_arg_error(i);
-		return (1);
-	}
+		return (print_arg_error(i), 1);
 	if (init_simulation(&sim, &args) != 0)
 	{
 		printf("Error: Failed to initialize simulation\n");
 		return (1);
 	}
-	if (init_coders(&sim) != 0)
-	{
-		printf("Error: Failed to initialize coders\n");
+	if (init_simulation_data(&sim) != 0)
 		return (1);
-	}
-	if (init_dongles(&sim) != 0)
-	{
-		printf("Error: Failed to initialize dongles\n");
-		return (1);
-	}
+	cleanup_simulation(&sim);
 	return (0);
 }

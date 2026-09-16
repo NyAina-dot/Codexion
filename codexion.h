@@ -49,6 +49,7 @@ typedef struct s_simulation
 	t_dongle	*dongles;
 	long		start_time;
 	int			stop;
+	int			dongles_initialized;
 }	t_simulation;
 
 int		is_number(char *str);
@@ -68,5 +69,7 @@ int		allocate_coders(t_simulation *sim);
 int 	init_coders(t_simulation *sim);
 int 	allocate_dongles(t_simulation *sim);
 int 	init_dongles(t_simulation *sim);
+void    cleanup_simulation(t_simulation *sim);
+int		init_simulation_data(t_simulation *sim);
 
 #endif
