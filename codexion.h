@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+#include <limits.h>
 
 typedef struct s_args
 {
@@ -34,6 +35,8 @@ typedef struct s_args
 typedef struct s_coder
 {
 	int	id;
+	int compiles_done;
+	long last_compile_time;
 }	t_coder;
 
 typedef struct s_dongle
@@ -71,5 +74,6 @@ int 	allocate_dongles(t_simulation *sim);
 int 	init_dongles(t_simulation *sim);
 void    cleanup_simulation(t_simulation *sim);
 int		init_simulation_data(t_simulation *sim);
+long	get_time_ms(void);
 
 #endif
