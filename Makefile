@@ -6,6 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread -I.
 SRC = main.c\
 	utils/ft_atol.c\
 	utils/ft_isspace.c\
+	utils/time.c\
 	parsing/parse_args.c\
 	parsing/parse_args_utils.c\
 	simulation/init_simulation.c\

@@ -5,6 +5,7 @@ void    cleanup_simulation(t_simulation *sim)
     if (sim->dongles != NULL)
     {
         int i;
+
         i = 0;
         while (i < sim->dongles_initialized)
         {
