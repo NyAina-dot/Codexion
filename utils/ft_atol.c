@@ -15,17 +15,17 @@
 long	ft_atol(const char *str)
 {
 	long	result;
+	int		digit;
 
 	result = 0;
 	while (ft_isspace(*str))
-	{
-		str++;
-	}
-	if (*str == '+')
 		str++;
 	while (*str >= '0' && *str <= '9')
 	{
-		result = result * 10 + (*str - '0');
+		digit = *str - '0';
+		if (result > (LONG_MAX - digit) / 10)
+			return (-1);
+		result = result * 10 + digit;
 		str++;
 	}
 	return (result);
