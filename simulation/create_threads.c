@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_dongles.c                                     :+:      :+:    :+:   */
+/*   create_threads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/15 09:52:38 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/17 13:31:32 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/17 10:53:34 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/17 13:56:44 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	init_dongles(t_simulation *sim)
+void	*coders_routine(void *arg)
 {
+	int	id;
+
+	id = *(int *)arg;
+	printf("Coder %d started\n", id);
+	return (NULL);
+}
+
+int	create_threads(t_simulation *sim)
+{
+	int	nb_coders;
 	int	i;
 
-	if (allocate_dongles(sim) != 0)
-		return (1);
+	nb_coders = sim->args.number_of_coders;
 	i = 0;
-	while (i < sim->args.number_of_coders)
+	while (i < nb_coders)
 	{
-		if (pthread_mutex_init(&sim->dongles[i].mutex, NULL) != 0)
-			return (1);
-		sim->dongles[i].available_at = 0;
-		sim->dongles_initialized++;
+		pthread_create(
+			&sim->coders[i].thread, NULL, coders_routine,
+			&sim->coders[i].id
+			);
+		i++;
+	}
+	i = 0;
+	while (i < nb_coders)
+	{
+		pthread_join(sim->coders[i].thread, NULL);
 		i++;
 	}
 	return (0);

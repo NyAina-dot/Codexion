@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 09:57:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/17 10:25:21 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/17 13:18:12 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (init_simulation_data(&sim) != 0)
+		return (1);
+	if (create_threads(&sim) != 0)
 		return (1);
 	cleanup_simulation(&sim);
 	return (0);

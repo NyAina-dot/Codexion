@@ -15,6 +15,7 @@ SRC = main.c\
 	simulation/allocate_dongles.c\
 	simulation/init_dongles.c\
 	simulation/cleanup_simulation.c\
+	simulation/create_threads.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = codexion.h
