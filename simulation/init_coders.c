@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_coders.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/15 09:52:28 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/17 10:15:51 by nyrajaon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
-int init_coders(t_simulation *sim)
+int	init_coders(t_simulation *sim)
 {
-    int i;
+	int	i;
 
-    if (allocate_coders(sim) != 0)
-        return (1);
-    i = 0;
-    while (i < sim->args.number_of_coders)
-    {
-        sim->coders[i].id = i + 1;
-        sim->coders[i].compiles_done = 0;
-        sim->coders[i].last_compile_time = 0;
-        i++;
-    }
-    return (0);
+	if (allocate_coders(sim) != 0)
+		return (1);
+	i = 0;
+	while (i < sim->args.number_of_coders)
+	{
+		sim->coders[i].id = i + 1;
+		sim->coders[i].compiles_done = 0;
+		sim->coders[i].last_compile_time = 0;
+		i++;
+	}
+	return (0);
 }

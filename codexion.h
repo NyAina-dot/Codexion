@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/11 10:21:31 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/17 10:29:39 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-#include <limits.h>
+# include <limits.h>
 
 typedef struct s_args
 {
@@ -34,9 +34,9 @@ typedef struct s_args
 
 typedef struct s_coder
 {
-	int	id;
-	int compiles_done;
-	long last_compile_time;
+	int		id;
+	int		compiles_done;
+	long	last_compile_time;
 }	t_coder;
 
 typedef struct s_dongle
@@ -69,10 +69,10 @@ void	print_arg_error(int error);
 int		validate_number_args(char **av);
 int		init_simulation(t_simulation *sim, t_args *args);
 int		allocate_coders(t_simulation *sim);
-int 	init_coders(t_simulation *sim);
-int 	allocate_dongles(t_simulation *sim);
-int 	init_dongles(t_simulation *sim);
-void    cleanup_simulation(t_simulation *sim);
+int		init_coders(t_simulation *sim);
+int		allocate_dongles(t_simulation *sim);
+int		init_dongles(t_simulation *sim);
+void	cleanup_simulation(t_simulation *sim);
 int		init_simulation_data(t_simulation *sim);
 long	get_time_ms(void);
 

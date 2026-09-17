@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_simulation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/15 09:52:48 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/17 10:19:39 by nyrajaon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
-int init_simulation(t_simulation *sim, t_args *args)
+int	init_simulation(t_simulation *sim, t_args *args)
 {
-    sim->args = *args;
-    sim->coders = NULL;
-    sim->dongles = NULL;
-    sim->start_time = 0;
-    sim->stop = 0;
-    sim->dongles_initialized = 0;
-    return (0);
+	sim->args = *args;
+	sim->coders = NULL;
+	sim->dongles = NULL;
+	sim->start_time = 0;
+	sim->stop = 0;
+	sim->dongles_initialized = 0;
+	return (0);
 }
 
 int	init_simulation_data(t_simulation *sim)
