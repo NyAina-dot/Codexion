@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 10:53:34 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/17 13:56:44 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/18 13:03:11 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	*coders_routine(void *arg)
 {
-	int	id;
+	t_coder	*coder;
 
-	id = *(int *)arg;
-	printf("Coder %d started\n", id);
+	coder = (t_coder *)arg;
+	printf("coder %d started\n", coder->id);
+	coder_compile(coder);
+	coder_debug(coder);
+	coder_refactor(coder);
 	return (NULL);
 }
 

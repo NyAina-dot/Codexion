@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/17 13:52:15 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/18 13:01:52 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
+
+typedef struct s_simulation t_simulation;
 
 typedef struct s_args
 {
@@ -35,10 +37,11 @@ typedef struct s_args
 
 typedef struct s_coder
 {
-	int			id;
-	int			compiles_done;
-	long		last_compile_time;
-	pthread_t	thread;
+	int				id;
+	int				compiles_done;
+	long			last_compile_time;
+	pthread_t		thread;
+	t_simulation	*sim;
 }	t_coder;
 
 typedef struct s_dongle
@@ -79,5 +82,8 @@ int		init_simulation_data(t_simulation *sim);
 long	get_time_ms(void);
 int		create_threads(t_simulation *sim);
 void	*coders_routine(void *arg);
+void	coder_compile(t_coder *coder);
+void	coder_debug(t_coder *coder);
+void	coder_refactor(t_coder *coder);
 
 #endif
