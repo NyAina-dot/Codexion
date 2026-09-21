@@ -18,9 +18,14 @@ void	*coders_routine(void *arg)
 
 	coder = (t_coder *)arg;
 	printf("coder %d started\n", coder->id);
-	coder_compile(coder);
-	coder_debug(coder);
-	coder_refactor(coder);
+	while (coder->compiles_done
+		< coder->sim->args.number_of_compiles_required)
+	{
+		coder_compile(coder);
+		coder->compiles_done++;
+		coder_debug(coder);
+		coder_refactor(coder);
+	}
 	return (NULL);
 }
 

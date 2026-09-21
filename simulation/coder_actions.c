@@ -2,7 +2,7 @@
 
 void	coder_compile(t_coder *coder)
 {
-	printf("coder %d compliling\n", coder->id);
+	printf("coder %d compiling\n", coder->id);
 	usleep(coder->sim->args.time_to_compile * 1000);
 }
 
@@ -15,5 +15,5 @@ void	coder_debug(t_coder *coder)
 void	coder_refactor(t_coder *coder)
 {
 	printf("coder %d refactoring\n", coder->id);
-	usleep(coder->sim->args.time_to_compile * 1000);
+	usleep(coder->sim->args.time_to_refactor * 1000);
 }

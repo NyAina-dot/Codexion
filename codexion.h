@@ -42,6 +42,8 @@ typedef struct s_coder
 	long			last_compile_time;
 	pthread_t		thread;
 	t_simulation	*sim;
+	int				left_dongle;
+	int				right_dongle;
 }	t_coder;
 
 typedef struct s_dongle
@@ -85,5 +87,7 @@ void	*coders_routine(void *arg);
 void	coder_compile(t_coder *coder);
 void	coder_debug(t_coder *coder);
 void	coder_refactor(t_coder *coder);
+void	take_dongles(t_coder *coder);
+void	release_dongles(t_coder *coder);
 
 #endif
