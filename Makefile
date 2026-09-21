@@ -18,6 +18,8 @@ SRC = main.c\
 	simulation/create_threads.c\
 	simulation/coder_actions.c\
 	simulation/dongles.c\
+	simulation/init_queue.c\
+	simulation/queue_push.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = codexion.h

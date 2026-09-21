@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/21 12:49:55 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:09:23 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,30 @@ typedef struct s_dongle
 	long			available_at;
 }	t_dongle;
 
+typedef struct s_requests
+{
+	t_coder	*coder;
+	long	request_time;
+	long	deadline;
+}	t_requests;
+
+typedef struct s_queue
+{
+	t_requests	*requests;
+	int			size;
+	int			capacity;
+}	t_queue;
+
 typedef struct s_simulation
 {
 	t_args		args;
 	t_coder		*coders;
 	t_dongle	*dongles;
+	t_queue		queue;
 	long		start_time;
 	int			stop;
 	int			dongles_initialized;
 }	t_simulation;
-
-typedef struct s_dongle_request
-{
-	t_coder	*coder;
-	long	request_time;
-	long	deadline;
-}	t_dongle_request;
-
-typedef struct	s_queue
-{
-	t_dongle_request	dongle_request;
-	int					capacity;
-}	t_queue;
 
 int		is_number(char *str);
 void	parse_args(char **av, t_args *args);
@@ -102,5 +104,7 @@ void	coder_debug(t_coder *coder);
 void	coder_refactor(t_coder *coder);
 void	take_dongles(t_coder *coder);
 void	release_dongles(t_coder *coder);
+int		init_queue(t_simulation *sim);
+int		queue_push(t_simulation *sim, t_requests request);
 
 #endif
