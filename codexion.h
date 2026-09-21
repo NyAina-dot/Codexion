@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/18 13:01:52 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/21 12:49:55 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <limits.h>
 
-typedef struct s_simulation t_simulation;
+typedef struct s_simulation	t_simulation;
 
 typedef struct s_args
 {
@@ -61,6 +61,19 @@ typedef struct s_simulation
 	int			stop;
 	int			dongles_initialized;
 }	t_simulation;
+
+typedef struct s_dongle_request
+{
+	t_coder	*coder;
+	long	request_time;
+	long	deadline;
+}	t_dongle_request;
+
+typedef struct	s_queue
+{
+	t_dongle_request	dongle_request;
+	int					capacity;
+}	t_queue;
 
 int		is_number(char *str);
 void	parse_args(char **av, t_args *args);
