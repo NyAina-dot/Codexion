@@ -20,6 +20,9 @@ SRC = main.c\
 	simulation/dongles.c\
 	simulation/init_queue.c\
 	simulation/queue_push.c\
+	simulation/queue_pop.c\
+	simulation/queue_compare.c\
+	simulation/heap.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = codexion.h

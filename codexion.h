@@ -52,16 +52,16 @@ typedef struct s_dongle
 	long			available_at;
 }	t_dongle;
 
-typedef struct s_requests
+typedef struct s_request
 {
 	t_coder	*coder;
 	long	request_time;
 	long	deadline;
-}	t_requests;
+}	t_request;
 
 typedef struct s_queue
 {
-	t_requests	*requests;
+	t_request	*requests;
 	int			size;
 	int			capacity;
 }	t_queue;
@@ -105,6 +105,10 @@ void	coder_refactor(t_coder *coder);
 void	take_dongles(t_coder *coder);
 void	release_dongles(t_coder *coder);
 int		init_queue(t_simulation *sim);
-int		queue_push(t_simulation *sim, t_requests request);
+int		queue_push(t_simulation *sim, t_request request);
+int		queue_pop(t_simulation *sim, t_request *request);
+int		request_has_priority(t_simulation *sim, t_request *a, t_request *b);
+void	heapify_up(t_simulation *sim, int index);
+void	heapify_down(t_simulation *sim, int index);
 
 #endif

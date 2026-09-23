@@ -12,15 +12,12 @@
 
 #include "codexion.h"
 
-int	queue_push(t_simulation *sim, t_requests request)
+int	queue_push(t_simulation *sim, t_request request)
 {
-	int	i;
-
-	i = 0;
-	while (i < sim->queue.size)
-	{
-		sim->queue.requests[sim->queue.size] = request;
-		sim->queue.size++;
-	}
+	if (sim->queue.size >= sim->queue.capacity)
+		return (1);
+	sim->queue.requests[sim->queue.size] = request;
+	sim->queue.size++;
+	heapify_up(sim, sim->queue.size - 1);
 	return (0);
 }

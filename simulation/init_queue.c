@@ -14,8 +14,10 @@
 
 int	init_queue(t_simulation *sim)
 {
-	sim->queue.requests = NULL;
-	sim->queue.capacity = 0;
+	sim->queue.capacity = sim->args.number_of_coders;
 	sim->queue.size = 0;
+	sim->queue.requests = malloc(sizeof(t_request) * sim->queue.capacity);
+	if (!sim->queue.requests)
+		return (1);
 	return (0);
 }
