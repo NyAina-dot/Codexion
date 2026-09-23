@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/21 15:09:23 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/23 13:02:55 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ typedef struct s_request
 
 typedef struct s_queue
 {
-	t_request	*requests;
-	int			size;
-	int			capacity;
+	t_request		*requests;
+	int				size;
+	int				capacity;
+	pthread_mutex_t	mutex;
 }	t_queue;
 
 typedef struct s_simulation

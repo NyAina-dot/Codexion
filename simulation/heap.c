@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/23 08:20:32 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/23 10:29:33 by nyrajaon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 void	heapify_up(t_simulation *sim, int index)
@@ -32,7 +44,7 @@ void	heapify_down(t_simulation *sim, int index)
 		best = index;
 		if (left < sim->queue.size
 			&& request_has_priority(sim, &sim->queue.requests[left],
-			&sim->queue.requests[best]))
+				&sim->queue.requests[best]))
 			best = left;
 		if (right < sim->queue.size
 			&& request_has_priority(sim, &sim->queue.requests[right],
