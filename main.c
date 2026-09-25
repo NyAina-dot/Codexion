@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 09:57:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/23 11:10:45 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/25 10:06:43 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static int	test_queue(t_simulation *sim)
 	}
 	while (queue_pop(sim, &request) == 0)
 		printf("Popped coder: %d\n", request.coder->id);
-	free(sim->queue.requests);
-	sim->queue.requests = NULL;
 	return (0);
 }
 
