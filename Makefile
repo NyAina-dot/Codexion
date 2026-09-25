@@ -23,6 +23,7 @@ SRC = main.c\
 	simulation/queue_pop.c\
 	simulation/queue_compare.c\
 	simulation/heap.c\
+	simulation/queue.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = codexion.h

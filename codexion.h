@@ -112,5 +112,8 @@ int		queue_pop(t_simulation *sim, t_request *request);
 int		request_has_priority(t_simulation *sim, t_request *a, t_request *b);
 void	heapify_up(t_simulation *sim, int index);
 void	heapify_down(t_simulation *sim, int index);
+int		is_request_first(t_simulation *sim, t_coder *coder);
+int		wait_for_turn(t_coder *coder);
+int		request_dongles(t_coder *coder);
 
 #endif
