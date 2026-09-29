@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 08:20:32 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/23 10:29:33 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 10:49:56 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
 void	heapify_up(t_simulation *sim, int index)
 {

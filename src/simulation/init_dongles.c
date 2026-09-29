@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_coders.c                                      :+:      :+:    :+:   */
+/*   init_dongles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/15 09:52:28 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/18 12:45:02 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/15 09:52:38 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/29 10:50:07 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
-int	init_coders(t_simulation *sim)
+int	init_dongles(t_simulation *sim)
 {
 	int	i;
 
-	if (allocate_coders(sim) != 0)
+	if (allocate_dongles(sim) != 0)
 		return (1);
 	i = 0;
 	while (i < sim->args.number_of_coders)
 	{
-		sim->coders[i].id = i + 1;
-		sim->coders[i].compiles_done = 0;
-		sim->coders[i].last_compile_time = 0;
-		sim->coders[i].sim = sim;
-		sim->coders[i].left_dongle = i;
-		sim->coders[i].right_dongle = (i + 1)
-			% sim->args.number_of_coders;
+		if (pthread_mutex_init(&sim->dongles[i].mutex, NULL) != 0)
+			return (1);
+		sim->dongles[i].available_at = 0;
+		sim->dongles_initialized++;
 		i++;
 	}
 	return (0);

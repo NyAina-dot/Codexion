@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_dongles.c                                 :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/15 09:52:01 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/15 09:57:52 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/11 09:22:32 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/29 10:50:48 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
-int	allocate_dongles(t_simulation *sim)
+int	ft_isspace(char c)
 {
-	sim->dongles = malloc(sizeof(t_dongle)
-			* sim->args.number_of_coders);
-	if (!sim->dongles)
-		return (1);
-	return (0);
+	return (
+		c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r'
+	);
 }

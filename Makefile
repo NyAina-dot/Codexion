@@ -3,30 +3,30 @@ NAME = codexion
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread -I.
 
-SRC = main.c\
-	utils/ft_atol.c\
-	utils/ft_isspace.c\
-	utils/time.c\
-	parsing/parse_args.c\
-	parsing/parse_args_utils.c\
-	simulation/init_simulation.c\
-	simulation/allocate_coders.c\
-	simulation/init_coders.c\
-	simulation/allocate_dongles.c\
-	simulation/init_dongles.c\
-	simulation/cleanup_simulation.c\
-	simulation/create_threads.c\
-	simulation/coder_actions.c\
-	simulation/dongles.c\
-	simulation/init_queue.c\
-	simulation/queue_push.c\
-	simulation/queue_pop.c\
-	simulation/queue_compare.c\
-	simulation/heap.c\
-	simulation/queue.c\
+SRC = src/main.c\
+	src/utils/ft_atol.c\
+	src/utils/ft_isspace.c\
+	src/utils/time.c\
+	src/parsing/parse_args.c\
+	src/parsing/parse_args_utils.c\
+	src/simulation/init_simulation.c\
+	src/simulation/allocate_coders.c\
+	src/simulation/init_coders.c\
+	src/simulation/allocate_dongles.c\
+	src/simulation/init_dongles.c\
+	src/simulation/cleanup_simulation.c\
+	src/simulation/create_threads.c\
+	src/simulation/coder_actions.c\
+	src/simulation/dongles.c\
+	src/simulation/init_queue.c\
+	src/simulation/queue_push.c\
+	src/simulation/queue_pop.c\
+	src/simulation/queue_compare.c\
+	src/simulation/heap.c\
+	src/simulation/queue.c\
 
 OBJ = $(SRC:.c=.o)
-HEADERS = codexion.h
+HEADERS = src/codexion.h
 
 all: $(NAME)
 

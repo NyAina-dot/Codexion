@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_pop.c                                        :+:      :+:    :+:   */
+/*   queue_compare.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/23 08:20:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/23 08:52:25 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/23 08:20:52 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/29 10:50:25 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
-int	queue_pop(t_simulation *sim, t_request *request)
+int	request_has_priority(t_simulation *sim, t_request *a, t_request *b)
 {
-	if (sim->queue.size == 0)
-		return (1);
-	*request = sim->queue.requests[0];
-	sim->queue.size--;
-	if (sim->queue.size > 0)
+	long	value_a;
+	long	value_b;
+
+	if (strcmp(sim->args.scheduler, "edf") == 0)
 	{
-		sim->queue.requests[0] = sim->queue.requests[sim->queue.size];
-		heapify_down(sim, 0);
+		value_a = a->deadline;
+		value_b = b->deadline;
 	}
-	return (0);
+	else
+	{
+		value_a = a->request_time;
+		value_b = b->request_time;
+	}
+	if (value_a != value_b)
+		return (value_a < value_b);
+	return (a->coder->id < b->coder->id);
 }

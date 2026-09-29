@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 13:44:28 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/25 10:27:41 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 10:50:12 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
 int	init_queue(t_simulation *sim)
 {

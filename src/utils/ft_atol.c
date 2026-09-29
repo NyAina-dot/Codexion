@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_compare.c                                    :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/23 08:20:52 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/23 08:52:21 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/11 08:46:31 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/29 10:48:40 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
-int	request_has_priority(t_simulation *sim, t_request *a, t_request *b)
+long	ft_atol(const char *str)
 {
-	long	value_a;
-	long	value_b;
+	long	result;
+	int		digit;
 
-	if (strcmp(sim->args.scheduler, "edf") == 0)
+	result = 0;
+	while (ft_isspace(*str))
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		value_a = a->deadline;
-		value_b = b->deadline;
+		digit = *str - '0';
+		if (result > (LONG_MAX - digit) / 10)
+			return (-1);
+		result = result * 10 + digit;
+		str++;
 	}
-	else
-	{
-		value_a = a->request_time;
-		value_b = b->request_time;
-	}
-	if (value_a != value_b)
-		return (value_a < value_b);
-	return (a->coder->id < b->coder->id);
+	return (result);
 }

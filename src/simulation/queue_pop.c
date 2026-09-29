@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   queue_pop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/11 08:46:31 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/17 10:21:18 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/23 08:20:59 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/29 10:50:29 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
-long	ft_atol(const char *str)
+int	queue_pop(t_simulation *sim, t_request *request)
 {
-	long	result;
-	int		digit;
-
-	result = 0;
-	while (ft_isspace(*str))
-		str++;
-	while (*str >= '0' && *str <= '9')
+	if (sim->queue.size == 0)
+		return (1);
+	*request = sim->queue.requests[0];
+	sim->queue.size--;
+	if (sim->queue.size > 0)
 	{
-		digit = *str - '0';
-		if (result > (LONG_MAX - digit) / 10)
-			return (-1);
-		result = result * 10 + digit;
-		str++;
+		sim->queue.requests[0] = sim->queue.requests[sim->queue.size];
+		heapify_down(sim, 0);
 	}
-	return (result);
+	return (0);
 }

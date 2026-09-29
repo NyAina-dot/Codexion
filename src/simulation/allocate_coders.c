@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   allocate_coders.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/11 09:22:32 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/11 09:43:27 by nyrajaon         ###   ########.fr       */
+/*   Created: 2026/09/15 09:51:45 by nyrajaon          #+#    #+#             */
+/*   Updated: 2026/09/29 10:49:20 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "src/codexion.h"
 
-int	ft_isspace(char c)
+int	allocate_coders(t_simulation *sim)
 {
-	return (
-		c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r'
-	);
+	sim->coders = malloc(sizeof(t_coder)
+			* sim->args.number_of_coders);
+	if (!sim->coders)
+		return (1);
+	return (0);
 }
