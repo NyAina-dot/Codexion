@@ -14,8 +14,9 @@
 
 void	coder_compile(t_coder *coder)
 {
-	take_dongles(coder);
-	printf("coder %d compiling\n", coder->id);
+	if (request_dongles(coder) != 0)
+		return ;
+	printf("Coder %d compiling\n", coder->id);
 	usleep(coder->sim->args.time_to_compile * 1000);
 	release_dongles(coder);
 }

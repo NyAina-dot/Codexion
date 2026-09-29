@@ -9,13 +9,16 @@ int	is_request_first(t_simulation *sim, t_coder *coder)
 int	wait_for_turn(t_coder *coder)
 {
 	t_simulation	*sim;
+	t_request		request;
 
 	sim = coder->sim;
 	pthread_mutex_lock(&sim->queue.mutex);
 	while (!is_request_first(sim, coder) && !sim->stop)
 		pthread_cond_wait(&sim->queue.cond, &sim->queue.mutex);
+	if (!sim->stop)
+		queue_pop(sim, &request);
 	pthread_mutex_unlock(&sim->queue.mutex);
-	return (0);
+	return (sim->stop);
 }
 
 int	request_dongles(t_coder *coder)
