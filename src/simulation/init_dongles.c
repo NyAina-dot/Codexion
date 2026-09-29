@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 09:52:38 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:50:07 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:15:49 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 int	init_dongles(t_simulation *sim)
 {

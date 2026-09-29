@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 08:47:06 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:49:11 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:15:03 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 int	is_number(char *str)
 {

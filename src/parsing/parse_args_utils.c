@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 08:46:49 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:49:13 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:14:55 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 void	print_usage(void)
 {

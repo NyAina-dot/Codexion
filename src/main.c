@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 09:57:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:51:01 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:16:32 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 static int	test_queue(t_simulation *sim)
 {

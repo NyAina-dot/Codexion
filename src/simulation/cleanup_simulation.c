@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 09:52:16 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:49:31 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:15:15 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 void	cleanup_simulation(t_simulation *sim)
 {

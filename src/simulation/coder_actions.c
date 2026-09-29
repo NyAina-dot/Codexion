@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 08:46:00 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:49:36 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:15:19 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 void	coder_compile(t_coder *coder)
 {

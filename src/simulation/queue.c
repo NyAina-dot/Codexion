@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 10:45:01 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:50:38 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:16:15 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 int	is_request_first(t_simulation *sim, t_coder *coder)
 {

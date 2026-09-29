@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 08:20:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:50:29 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:16:06 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 int	queue_pop(t_simulation *sim, t_request *request)
 {

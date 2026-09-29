@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 09:51:45 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:49:20 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:15:09 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 int	allocate_coders(t_simulation *sim)
 {

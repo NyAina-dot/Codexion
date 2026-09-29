@@ -6,11 +6,11 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 09:22:32 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 10:50:48 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 11:16:22 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/codexion.h"
+#include "codexion.h"
 
 int	ft_isspace(char c)
 {
