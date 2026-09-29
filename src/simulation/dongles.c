@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 08:45:40 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 11:15:36 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 13:39:56 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,14 @@ void	release_dongles(t_coder *coder)
 	pthread_mutex_unlock(&coder->sim->queue.mutex);
 }
 
-// int	dongles_available(t_coder *coder);
+int	dongles_available(t_coder *coder)
+{
+	long	now;
+
+	now = get_time_ms();
+	if (coder->sim->dongles[coder->left_dongle].available_at > now)
+		return (0);
+	if (coder->sim->dongles[coder->right_dongle].available_at > now)
+		return (0);
+	return (1);
+}

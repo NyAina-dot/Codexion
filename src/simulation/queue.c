@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 10:45:01 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 11:16:15 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 14:48:30 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	wait_for_turn(t_coder *coder)
 
 	sim = coder->sim;
 	pthread_mutex_lock(&sim->queue.mutex);
-	while (!is_request_first(sim, coder) && !sim->stop)
+	while ((!is_request_first(sim, coder)
+		|| !dongles_available(coder)) && !sim->stop)
 		pthread_cond_wait(&sim->queue.cond, &sim->queue.mutex);
 	if (!sim->stop)
 		queue_pop(sim, &request);
 	pthread_mutex_unlock(&sim->queue.mutex);
-	return (sim->stop);
+	return (0);
 }
 
 int	request_dongles(t_coder *coder)

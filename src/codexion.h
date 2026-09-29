@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/25 10:02:11 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/09/29 13:40:29 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ void	heapify_down(t_simulation *sim, int index);
 int		is_request_first(t_simulation *sim, t_coder *coder);
 int		wait_for_turn(t_coder *coder);
 int		request_dongles(t_coder *coder);
+int		dongles_available(t_coder *coder);
 
 #endif
