@@ -64,3 +64,15 @@ int	dongles_available(t_coder *coder)
 		return (0);
 	return (1);
 }
+
+long	next_dongles_available(t_coder *coder)
+{
+	long	left;
+	long	right;
+
+	left = coder->sim->dongles[coder->left_dongle].available_at;
+	right = coder->sim->dongles[coder->right_dongle].available_at;
+	if (left > right)
+		return (left);
+	return (right);
+}

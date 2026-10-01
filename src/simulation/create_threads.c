@@ -40,7 +40,7 @@ int	create_threads(t_simulation *sim)
 	{
 		pthread_create(
 			&sim->coders[i].thread, NULL, coders_routine,
-			&sim->coders[i].id
+			&sim->coders[i]
 			);
 		i++;
 	}

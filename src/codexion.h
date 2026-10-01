@@ -116,5 +116,6 @@ int		is_request_first(t_simulation *sim, t_coder *coder);
 int		wait_for_turn(t_coder *coder);
 int		request_dongles(t_coder *coder);
 int		dongles_available(t_coder *coder);
+long	next_dongles_available(t_coder *coder);
 
 #endif

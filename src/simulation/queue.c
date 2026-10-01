@@ -26,7 +26,7 @@ int	wait_for_turn(t_coder *coder)
 	sim = coder->sim;
 	pthread_mutex_lock(&sim->queue.mutex);
 	while ((!is_request_first(sim, coder)
-		|| !dongles_available(coder)) && !sim->stop)
+			|| !dongles_available(coder)) && !sim->stop)
 		pthread_cond_wait(&sim->queue.cond, &sim->queue.mutex);
 	if (!sim->stop)
 		queue_pop(sim, &request);
