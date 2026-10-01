@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 13:40:29 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/01 12:18:58 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ int		dongles_available(t_coder *coder);
 long	next_dongles_available(t_coder *coder);
 int		get_wait_time(t_coder *coder, struct timespec *timeout);
 void	reserve_dongles(t_coder *coder);
+int		get_wait_time(t_coder *coder, struct timespec *timeout);
 
 #endif

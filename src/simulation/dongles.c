@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 08:45:40 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 13:39:56 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/01 12:18:12 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,6 @@ long	next_dongles_available(t_coder *coder)
 	if (left > right)
 		return (left);
 	return (right);
-}
-
-int	get_wait_time(t_coder *coder, struct timespec *timeout)
-{
-	long	wait_ms;
-
-	wait_ms = next_dongles_available(coder) - get_time_ms();
-	if (wait_ms < 0)
-		wait_ms = 0;
-	if (clock_gettime(CLOCK_REALTIME, timeout) != 0)
-		return (1);
-	timeout->tv_sec += wait_ms / 1000;
-	timeout->tv_nsec += (wait_ms % 1000) * 1000000L;
-	if (timeout->tv_nsec >= 1000000000L)
-	{
-		timeout->tv_sec++;
-		timeout->tv_nsec -= 1000000000L;
-	}
-	return (0);
 }
 
 void	reserve_dongles(t_coder *coder)
