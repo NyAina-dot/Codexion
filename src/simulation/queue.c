@@ -21,15 +21,30 @@ int	is_request_first(t_simulation *sim, t_coder *coder)
 int	wait_for_turn(t_coder *coder)
 {
 	t_simulation	*sim;
+	struct timespec	timeout;
 	t_request		request;
 
 	sim = coder->sim;
 	pthread_mutex_lock(&sim->queue.mutex);
-	while ((!is_request_first(sim, coder)
-			|| !dongles_available(coder)) && !sim->stop)
-		pthread_cond_wait(&sim->queue.cond, &sim->queue.mutex);
-	if (!sim->stop)
+	while (!sim->stop)
+	{
+		if (!is_request_first(sim, coder))
+		{
+			pthread_cond_wait(&sim->queue.cond, &sim->queue.mutex);
+			continue ;
+		}
+		if (!dongles_available(coder))
+		{
+			if (get_wait_time(coder, &timeout) != 0)
+				break ;
+			pthread_cond_timedwait(&sim->queue.cond,
+				&sim->queue.mutex, &timeout);
+			continue ;
+		}
+		reserve_dongles(coder);
 		queue_pop(sim, &request);
+		break ;
+	}
 	pthread_mutex_unlock(&sim->queue.mutex);
 	return (0);
 }

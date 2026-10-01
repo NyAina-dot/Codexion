@@ -12,13 +12,14 @@
 
 #include "codexion.h"
 
-void	coder_compile(t_coder *coder)
+int	coder_compile(t_coder *coder)
 {
 	if (request_dongles(coder) != 0)
-		return ;
-	printf("Coder %d compiling\n", coder->id);
+		return (0);
+	printf("coder %d compiling\n", coder->id);
 	usleep(coder->sim->args.time_to_compile * 1000);
 	release_dongles(coder);
+	return (1);
 }
 
 void	coder_debug(t_coder *coder)

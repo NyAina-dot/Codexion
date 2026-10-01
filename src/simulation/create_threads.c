@@ -21,7 +21,8 @@ void	*coders_routine(void *arg)
 	while (coder->compiles_done
 		< coder->sim->args.number_of_compiles_required)
 	{
-		coder_compile(coder);
+		if (!coder_compile(coder))
+			break ;
 		coder->compiles_done++;
 		coder_debug(coder);
 		coder_refactor(coder);

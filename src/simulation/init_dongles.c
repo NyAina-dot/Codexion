@@ -24,6 +24,7 @@ int	init_dongles(t_simulation *sim)
 		if (pthread_mutex_init(&sim->dongles[i].mutex, NULL) != 0)
 			return (1);
 		sim->dongles[i].available_at = 0;
+		sim->dongles[i].in_use = 0;
 		sim->dongles_initialized++;
 		i++;
 	}

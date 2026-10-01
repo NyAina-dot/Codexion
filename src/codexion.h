@@ -50,6 +50,7 @@ typedef struct s_dongle
 {
 	pthread_mutex_t	mutex;
 	long			available_at;
+	int				in_use;
 }	t_dongle;
 
 typedef struct s_request
@@ -101,7 +102,7 @@ int		init_simulation_data(t_simulation *sim);
 long	get_time_ms(void);
 int		create_threads(t_simulation *sim);
 void	*coders_routine(void *arg);
-void	coder_compile(t_coder *coder);
+int		coder_compile(t_coder *coder);
 void	coder_debug(t_coder *coder);
 void	coder_refactor(t_coder *coder);
 void	take_dongles(t_coder *coder);
@@ -117,5 +118,7 @@ int		wait_for_turn(t_coder *coder);
 int		request_dongles(t_coder *coder);
 int		dongles_available(t_coder *coder);
 long	next_dongles_available(t_coder *coder);
+int		get_wait_time(t_coder *coder, struct timespec *timeout);
+void	reserve_dongles(t_coder *coder);
 
 #endif
