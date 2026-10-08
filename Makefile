@@ -25,6 +25,7 @@ SRC = src/main.c\
 	src/simulation/heap.c\
 	src/simulation/queue.c\
 	src/simulation/wait_time.c\
+	src/simulation/monitor.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = src/codexion.h

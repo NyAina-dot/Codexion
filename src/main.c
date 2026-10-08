@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 		return (print_arg_error(i), 1);
 	if (init_simulation(&sim, &args) != 0)
 		return (1);
+	sim.start_time = get_time_ms();
 	if (init_coders(&sim) != 0)
 		return (1);
 	if (init_dongles(&sim) != 0)

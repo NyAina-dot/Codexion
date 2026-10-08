@@ -18,14 +18,12 @@ int	is_request_first(t_simulation *sim, t_coder *coder)
 		&& sim->queue.requests[0].coder == coder);
 }
 
-int	wait_for_turn(t_coder *coder)
+static int	wait_for_request(t_coder *coder)
 {
 	t_simulation	*sim;
 	struct timespec	timeout;
-	t_request		request;
 
 	sim = coder->sim;
-	pthread_mutex_lock(&sim->queue.mutex);
 	while (!sim->stop)
 	{
 		if (!is_request_first(sim, coder))
@@ -33,17 +31,27 @@ int	wait_for_turn(t_coder *coder)
 			pthread_cond_wait(&sim->queue.cond, &sim->queue.mutex);
 			continue ;
 		}
-		if (!dongles_available(coder))
-		{
-			if (get_wait_time(coder, &timeout) != 0)
-				break ;
-			pthread_cond_timedwait(&sim->queue.cond,
-				&sim->queue.mutex, &timeout);
-			continue ;
-		}
+		if (dongles_available(coder))
+			return (1);
+		if (get_wait_time(coder, &timeout) != 0)
+			return (0);
+		pthread_cond_timedwait(&sim->queue.cond,
+			&sim->queue.mutex, &timeout);
+	}
+	return (0);
+}
+
+int	wait_for_turn(t_coder *coder)
+{
+	t_simulation	*sim;
+	t_request		request;
+
+	sim = coder->sim;
+	pthread_mutex_lock(&sim->queue.mutex);
+	if (wait_for_request(coder))
+	{
 		reserve_dongles(coder);
 		queue_pop(sim, &request);
-		break ;
 	}
 	pthread_mutex_unlock(&sim->queue.mutex);
 	return (0);

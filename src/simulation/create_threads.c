@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 10:53:34 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 11:15:27 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/08 16:08:38 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,15 @@ void	*coders_routine(void *arg)
 	while (coder->compiles_done
 		< coder->sim->args.number_of_compiles_required)
 	{
+		if (simulation_stopped(coder->sim))
+			break ;
 		if (!coder_compile(coder))
 			break ;
+		pthread_mutex_lock(&coder->sim->queue.mutex);
 		coder->compiles_done++;
+		pthread_mutex_unlock(&coder->sim->queue.mutex);
+		if (simulation_stopped(coder->sim))
+			break ;
 		coder_debug(coder);
 		coder_refactor(coder);
 	}
@@ -36,6 +42,7 @@ int	create_threads(t_simulation *sim)
 	int	i;
 
 	nb_coders = sim->args.number_of_coders;
+	pthread_create(&sim->monitor_thread, NULL, monitor_routine, sim);
 	i = 0;
 	while (i < nb_coders)
 	{
@@ -51,5 +58,6 @@ int	create_threads(t_simulation *sim)
 		pthread_join(sim->coders[i].thread, NULL);
 		i++;
 	}
+	pthread_join(sim->monitor_thread, NULL);
 	return (0);
 }

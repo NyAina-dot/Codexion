@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 08:46:00 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 11:15:19 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/08 16:05:57 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ int	coder_compile(t_coder *coder)
 {
 	if (request_dongles(coder) != 0)
 		return (0);
+	if (simulation_stopped(coder->sim))
+	{
+		release_dongles(coder);
+		return (0);
+	}
+	pthread_mutex_lock(&coder->sim->queue.mutex);
+	coder->last_compile_time = get_time_ms();
+	pthread_mutex_unlock(&coder->sim->queue.mutex);
 	printf("coder %d compiling\n", coder->id);
 	usleep(coder->sim->args.time_to_compile * 1000);
 	release_dongles(coder);

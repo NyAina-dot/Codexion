@@ -23,7 +23,7 @@ int	init_coders(t_simulation *sim)
 	{
 		sim->coders[i].id = i + 1;
 		sim->coders[i].compiles_done = 0;
-		sim->coders[i].last_compile_time = 0;
+		sim->coders[i].last_compile_time = sim->start_time;
 		sim->coders[i].sim = sim;
 		sim->coders[i].left_dongle = i;
 		sim->coders[i].right_dongle = (i + 1)

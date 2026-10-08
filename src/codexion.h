@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/01 12:18:58 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/08 16:03:40 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_simulation
 	t_coder		*coders;
 	t_dongle	*dongles;
 	t_queue		queue;
+	pthread_t	monitor_thread;
 	long		start_time;
 	int			stop;
 	int			dongles_initialized;
@@ -121,5 +122,7 @@ long	next_dongles_available(t_coder *coder);
 int		get_wait_time(t_coder *coder, struct timespec *timeout);
 void	reserve_dongles(t_coder *coder);
 int		get_wait_time(t_coder *coder, struct timespec *timeout);
+void	*monitor_routine(void *arg);
+int		simulation_stopped(t_simulation *sim);
 
 #endif
