@@ -26,6 +26,7 @@ SRC = src/main.c\
 	src/simulation/queue.c\
 	src/simulation/wait_time.c\
 	src/simulation/monitor.c\
+	src/simulation/release_dongle.c\
 
 OBJ = $(SRC:.c=.o)
 HEADERS = src/codexion.h

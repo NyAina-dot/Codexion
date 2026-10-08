@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/08 16:03:40 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/08 20:09:17 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ void	reserve_dongles(t_coder *coder);
 int		get_wait_time(t_coder *coder, struct timespec *timeout);
 void	*monitor_routine(void *arg);
 int		simulation_stopped(t_simulation *sim);
+void	release_one_dongle(t_coder *coder, long available_at);
 
 #endif
