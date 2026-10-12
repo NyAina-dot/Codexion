@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 09:57:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/09/29 11:16:32 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/12 21:46:52 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	validate_number_args(char **av)
 	{
 		if (!is_number(av[i]))
 		{
-			printf(
-				"Error: Invalid argument, "
-				"'%s' must be an integer\n", av[i]
-				);
+			printf("Error: Invalid argument, "
+				"'%s' must be an integer\n", av[i]);
 			return (0);
 		}
 		i++;
@@ -36,28 +34,29 @@ int	main(int ac, char **av)
 {
 	t_args			args;
 	t_simulation	sim;
-	int				i;
+	int				error;
 
 	if (ac != 9)
 		return (print_usage(), 1);
 	if (!validate_number_args(av))
 		return (1);
 	parse_args(av, &args);
-	i = is_valid_args(&args);
-	if (i != 0)
-		return (print_arg_error(i), 1);
+	error = is_valid_args(&args);
+	if (error != 0)
+		return (print_arg_error(error), 1);
 	if (init_simulation(&sim, &args) != 0)
 		return (1);
 	sim.start_time = get_time_ms();
 	if (init_coders(&sim) != 0)
-		return (1);
+		return (cleanup_simulation(&sim), 1);
 	if (init_dongles(&sim) != 0)
 		return (cleanup_simulation(&sim), 1);
 	if (init_queue(&sim) != 0)
 		return (cleanup_simulation(&sim), 1);
 	sim.start_time = get_time_ms();
-	if (create_threads(&sim) != 0)
-		return (cleanup_simulation(&sim), 1);
+	error = create_threads(&sim);
 	cleanup_simulation(&sim);
+	if (error != 0)
+		return (1);
 	return (0);
 }

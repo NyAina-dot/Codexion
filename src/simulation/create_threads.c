@@ -6,58 +6,77 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 10:53:34 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/08 16:08:38 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/12 21:23:07 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void	*coders_routine(void *arg)
+static void	stop_simulation(t_simulation *sim)
 {
-	t_coder	*coder;
+	pthread_mutex_lock(&sim->queue.mutex);
+	sim->stop = 1;
+	pthread_cond_broadcast(&sim->queue.cond);
+	pthread_mutex_unlock(&sim->queue.mutex);
+}
 
-	coder = (t_coder *)arg;
-	printf("coder %d started\n", coder->id);
-	while (coder->compiles_done
-		< coder->sim->args.number_of_compiles_required)
+static int	start_monitor(t_simulation *sim)
+{
+	if (pthread_create(&sim->monitor_thread, NULL,
+			monitor_routine, sim) != 0)
 	{
-		if (simulation_stopped(coder->sim))
-			break ;
-		if (!coder_compile(coder))
-			break ;
-		pthread_mutex_lock(&coder->sim->queue.mutex);
-		coder->compiles_done++;
-		pthread_mutex_unlock(&coder->sim->queue.mutex);
-		if (simulation_stopped(coder->sim))
-			break ;
-		coder_debug(coder);
-		coder_refactor(coder);
+		printf("Error: Failed to create monitor thread\n");
+		stop_simulation(sim);
+		return (1);
 	}
-	return (NULL);
+	return (0);
+}
+
+static int	start_coders(t_simulation *sim, int *created)
+{
+	while (*created < sim->args.number_of_coders)
+	{
+		if (pthread_create(&sim->coders[*created].thread,
+				NULL, coders_routine,
+				&sim->coders[*created]) != 0)
+		{
+			printf("Error: Failed to create coder thread\n");
+			stop_simulation(sim);
+			return (1);
+		}
+		(*created)++;
+	}
+	return (0);
+}
+
+static int	join_coders(t_simulation *sim, int created)
+{
+	int	i;
+	int	error;
+
+	i = 0;
+	error = 0;
+	while (i < created)
+	{
+		if (pthread_join(sim->coders[i].thread, NULL) != 0)
+			error = 1;
+		i++;
+	}
+	return (error);
 }
 
 int	create_threads(t_simulation *sim)
 {
-	int	nb_coders;
-	int	i;
+	int	created;
+	int	error;
 
-	nb_coders = sim->args.number_of_coders;
-	pthread_create(&sim->monitor_thread, NULL, monitor_routine, sim);
-	i = 0;
-	while (i < nb_coders)
-	{
-		pthread_create(
-			&sim->coders[i].thread, NULL, coders_routine,
-			&sim->coders[i]
-			);
-		i++;
-	}
-	i = 0;
-	while (i < nb_coders)
-	{
-		pthread_join(sim->coders[i].thread, NULL);
-		i++;
-	}
-	pthread_join(sim->monitor_thread, NULL);
-	return (0);
+	created = 0;
+	if (start_monitor(sim) != 0)
+		return (1);
+	error = start_coders(sim, &created);
+	if (join_coders(sim, created) != 0)
+		error = 1;
+	if (pthread_join(sim->monitor_thread, NULL) != 0)
+		error = 1;
+	return (error);
 }

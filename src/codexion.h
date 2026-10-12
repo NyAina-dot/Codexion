@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 10:03:13 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/08 20:09:17 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/12 21:36:33 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_queue
 	int				capacity;
 	pthread_mutex_t	mutex;
 	pthread_cond_t	cond;
+	int				mutex_initialized;
+	int				cond_initialized;
 }	t_queue;
 
 typedef struct s_simulation
