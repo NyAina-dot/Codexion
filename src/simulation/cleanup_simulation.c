@@ -6,11 +6,22 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 09:52:16 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/12 21:44:44 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/13 07:51:42 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+static int	free_coders(t_simulation *sim)
+{
+	if (sim->coders)
+	{
+		free(sim->coders);
+		sim->coders = NULL;
+		return (1);
+	}
+	return (0);
+}
 
 void	cleanup_simulation(t_simulation *sim)
 {
@@ -28,11 +39,7 @@ void	cleanup_simulation(t_simulation *sim)
 		sim->dongles = NULL;
 		sim->dongles_initialized = 0;
 	}
-	if (sim->coders)
-	{
-		free(sim->coders);
-		sim->coders = NULL;
-	}
+	free_coders(sim);
 	if (sim->queue.cond_initialized)
 	{
 		pthread_cond_destroy(&sim->queue.cond);
