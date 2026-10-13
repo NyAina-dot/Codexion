@@ -6,11 +6,22 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 21:25:18 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/12 21:25:35 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/12 22:06:42 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+static int	coder_has_compiles_left(t_coder *coder)
+{
+	int	compiles_done;
+
+	pthread_mutex_lock(&coder->sim->queue.mutex);
+	compiles_done = coder->compiles_done;
+	pthread_mutex_unlock(&coder->sim->queue.mutex);
+	return (compiles_done
+		< coder->sim->args.number_of_compiles_required);
+}
 
 void	*coders_routine(void *arg)
 {
@@ -18,8 +29,7 @@ void	*coders_routine(void *arg)
 
 	coder = (t_coder *)arg;
 	printf("coder %d started\n", coder->id);
-	while (coder->compiles_done
-		< coder->sim->args.number_of_compiles_required)
+    while (coder_has_compiles_left(coder))
 	{
 		if (simulation_stopped(coder->sim))
 			break ;
