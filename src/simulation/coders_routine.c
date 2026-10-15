@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 21:25:18 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/13 08:06:44 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 11:45:30 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	*coders_routine(void *arg)
 	t_coder	*coder;
 
 	coder = (t_coder *)arg;
-	printf("coder %d started\n", coder->id);
 	while (coder_has_compiles_left(coder))
 	{
 		if (simulation_stopped(coder->sim))

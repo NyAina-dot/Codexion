@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 09:57:59 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/12 22:00:34 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 10:44:54 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 	t_args			args;
 	t_simulation	sim;
 	int				error;
+	int				i;
 
 	if (ac != 9)
 		return (print_usage(), 1);
@@ -46,11 +47,17 @@ int	main(int ac, char **av)
 		return (print_arg_error(error), 1);
 	if (init_simulation(&sim, &args) != 0)
 		return (1);
-	sim.start_time = get_time_ms();
 	if (init_simulation_data(&sim) != 0)
 		return (cleanup_simulation(&sim), 1);
 	if (init_queue(&sim) != 0)
 		return (cleanup_simulation(&sim), 1);
+	sim.start_time = get_time_ms();
+	i = 0;
+	while (i < sim.args.number_of_coders)
+	{
+		sim.coders[i].last_compile_time = sim.start_time;
+		i++;
+	}
 	error = create_threads(&sim);
 	cleanup_simulation(&sim);
 	if (error != 0)

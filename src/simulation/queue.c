@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 10:45:01 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/12 19:46:21 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 11:52:15 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	wait_for_turn(t_coder *coder)
 		reserve_dongles(coder);
 		queue_pop(sim, &request);
 		pthread_mutex_unlock(&sim->queue.mutex);
+		take_dongles(coder);
 		return (0);
 	}
 	pthread_mutex_unlock(&sim->queue.mutex);

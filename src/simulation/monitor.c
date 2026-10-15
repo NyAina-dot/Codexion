@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 15:59:35 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/08 20:01:07 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 11:53:29 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ static int	check_burnout(t_simulation *sim)
 			&& now - sim->coders[i].last_compile_time
 			>= sim->args.time_to_burnout)
 		{
-			printf("Coder %d burned out\n", sim->coders[i].id);
+			printf("%ld %d burned out\n",
+			get_time_ms() - sim->start_time,
+			sim->coders[i].id);
 			return (1);
 		}
 		i++;

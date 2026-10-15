@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 08:46:00 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/08 16:05:57 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 11:46:56 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	coder_compile(t_coder *coder)
 	pthread_mutex_lock(&coder->sim->queue.mutex);
 	coder->last_compile_time = get_time_ms();
 	pthread_mutex_unlock(&coder->sim->queue.mutex);
-	printf("coder %d compiling\n", coder->id);
+	print_log(coder, "is compiling");
 	usleep(coder->sim->args.time_to_compile * 1000);
 	release_dongles(coder);
 	return (1);
@@ -32,12 +32,12 @@ int	coder_compile(t_coder *coder)
 
 void	coder_debug(t_coder *coder)
 {
-	printf("coder %d debugging\n", coder->id);
+	print_log(coder, "is debugging");
 	usleep(coder->sim->args.time_to_debug * 1000);
 }
 
 void	coder_refactor(t_coder *coder)
 {
-	printf("coder %d refactoring\n", coder->id);
+	print_log(coder, "is refactoring");
 	usleep(coder->sim->args.time_to_refactor * 1000);
 }

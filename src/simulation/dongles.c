@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 08:45:40 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/08 20:10:06 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 11:51:53 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	take_dongles(t_coder *coder)
 	if (first == second)
 	{
 		pthread_mutex_lock(&coder->sim->dongles[first].mutex);
-		printf("Coder %d took dongle %d\n",
-			coder->id, first);
+		print_log(coder, "has taken a dongle");
 		return ;
 	}
 	if (first > second)
@@ -32,9 +31,9 @@ void	take_dongles(t_coder *coder)
 		second = coder->left_dongle;
 	}
 	pthread_mutex_lock(&coder->sim->dongles[first].mutex);
-	printf("Coder %d took dongle %d\n", coder->id, first);
+	print_log(coder, "has taken a dongle");
 	pthread_mutex_lock(&coder->sim->dongles[second].mutex);
-	printf("Coder %d took dongle %d\n", coder->id, second);
+	print_log(coder, "has taken a dongle");
 }
 
 void	release_dongles(t_coder *coder)
