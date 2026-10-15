@@ -1,7 +1,7 @@
 NAME = codexion
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -Isrc
+CFLAGS = -Wall -Wextra -Werror -pthread -Isrc -g
 
 SRC = src/main.c\
 	src/utils/ft_atol.c\

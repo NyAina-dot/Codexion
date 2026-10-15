@@ -6,7 +6,7 @@
 /*   By: nyrajaon <nyrajaon@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 10:45:01 by nyrajaon          #+#    #+#             */
-/*   Updated: 2026/10/15 11:52:15 by nyrajaon         ###   ########.fr       */
+/*   Updated: 2026/10/15 13:10:08 by nyrajaon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	wait_for_request(t_coder *coder)
 		if (get_wait_time(coder, &timeout) != 0)
 			return (0);
 		pthread_cond_timedwait(&sim->queue.cond,
-			&sim->queue.mutex, &timeout);
+		&sim->queue.mutex, &timeout);
 	}
 	return (0);
 }
